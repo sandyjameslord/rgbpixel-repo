@@ -27,16 +27,23 @@ app.use(bodyParser.urlencoded({extended:false}));
 // app.use(express.bodyParser({limit: '50mb'}));
 app.use(cors());
 
-const productRoutes = require("./routes/product");
-app.use("/api", productRoutes);
+// const productRoutes = require("./routes/product");
+// app.use("/api", productRoutes);
 
 const userRoutes = require('./routes/auth');
-app.use('/api', userRoutes);
+app.use(userRoutes);
+// app.use('/api', userRoutes);
 
 const burgerRoutes = require('./routes/burger');
-app.use('/api', burgerRoutes);
+app.use(burgerRoutes);
+// app.use('/api', burgerRoutes);
 
-app.listen(PORT, (err) => {
-    if (err) {console.log(err)}
-    else {console.log("listening on PORT:", PORT)}
-});
+// app.listen(PORT, (err) => {
+//     if (err) {console.log(err)}
+//     else {console.log("listening on PORT:", PORT)}
+// });
+
+module.exports = {
+    path: "/api",
+    handler: app
+}
